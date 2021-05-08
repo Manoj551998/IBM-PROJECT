@@ -1,0 +1,335 @@
+#include<stdio.h>
+#include<conio.h>
+#include<ctype.h>
+#include<stdlib.h>
+#include<time.h>
+#include<dos.h>
+void displayscore()
+{
+char name[20];
+float s;
+FILE *f;
+system("cls");
+f=fopen("score.txt","r");
+fscanf(f,"%s%f",&name,&s);
+printf("\n\n\t\t ");
+printf("\n\n\t\t %s has secured the Highest Score %.2f",name,s);
+printf("\n\n\t\t ");
+fclose(f);
+getch();
+}
+void help()
+{
+system("cls");
+printf("\n\n\n\tThis game is very easy to play. You'll be asked some general");
+printf("\n\n\tknowledge questions and the right answer is to be chosen among");
+printf("\n\n\tthe four options provided. Your score will be calculated at the");
+printf("\n\n\tend. Remember that the more quicker you give answer the more");
+printf("\n\n\tscore you will secure. Your score will be calculated and displayed");
+printf("\n\n\tat the end and displayed. If you secure highest score, your score");
+printf("\n\n\twill be recorded. So BEST OF LUCK.");
+printf("\n\n\t_________________________________________________________________");
+printf("\n\n\t\t\tProject Develped by CSE students of VSBCETC");
+printf("\n\n\t_________________________________________________________________");
+}
+void writescore(float score, char plnm[20])
+{
+float sc;
+char nm[20];
+FILE *f;
+system("cls");
+f=fopen("score.txt","r");
+fscanf(f,"%s%f",&nm,&sc);
+if(score>=sc)
+{
+sc=score;
+fclose(f);
+f=fopen("score.txt","w");
+fprintf(f,"%s\n%.2f",plnm,sc);
+fclose(f);
+}
+}
+int main()
+{
+int countq,countr;
+int r,i;
+int pa;
+int nq[6];
+int w;
+float score;
+char choice;
+char playername[20];
+time_t initialtime,finaltime;
+system("cls");
+randomize();
+mainhome:
+system("cls");
+puts("\n\t\t_________________________________");
+puts("\n\t\t***********IBM PROJECT***********");
+puts("\n\t\t_________________________________");
+puts("\n\t\t WELCOME TO I.Q. TEST PROGRAM\n") ;
+puts("\n\t\t-------------------------------");
+puts("\n\t\t Enter S to start game       ");
+puts("\n\t\t Enter V to view high score  ");
+puts("\n\t\t Enter H for help            ");
+puts("\n\t\t Enter Q to quit             ");
+puts("\n\t\t-------------------------------\n\n\t\t  ");
+choice=toupper(getch());
+if(choice=='V')
+{
+displayscore();
+goto mainhome;
+}
+else if(choice=='Q')
+exit(1);
+else if(choice=='H')
+{
+help();
+getch();
+goto mainhome;
+}
+else if(choice=='S'){
+system("cls");
+printf("\n\n\n\t\t\tEnter your name...");
+gets(playername);
+home:
+system("cls");
+initialtime=time(NULL);
+countq=countr=0;
+i=1;
+start:
+srand(time(NULL));
+r=rand()%23+1;
+nq[i]=r;
+for(w=0;w<i;w++)
+if(nq[w]==r)
+goto start;
+switch(r)
+{
+  case 1:
+  printf("\n\nIn which year GST was implemented in India?");
+  printf("\n\nA.July 1 2017\tB.June 1 2017\n\nC.August 1 2017\tD.April 1 2017\n\n");
+  countq++;
+  if(toupper(getch())=='A')
+  {
+  printf("\n\nCorrect!!!");
+  countr++;
+  break;
+  }
+  else
+  {
+  printf("\n\nWrong!!! The correct answer is A.July 1 2017");
+  break;
+  }
+  case 2:
+  printf("\n\n\nWhich of these years represents the WORLD WAR II?");
+  printf("\n\nA.1939-1945\tB.1934-1946\n\nC.1938-1947\tD.1939-1946\n\n");
+  countq++;
+  if(toupper(getch())=='A')
+  {
+  printf("\n\nCorrect!!!");
+  countr++;
+  break;
+  }
+  else
+  printf("\n\nWrong!!! The correct answer is A.1939-1945");
+  break;
+  case 3:
+  printf("\n\n\nWho was the first Indian President?");
+  printf("\n\nA.Jawaharlal Nehru\tB.R.Venkat Raman\n\nC.Sarvepalli Radhakrishnan\tD.Rajendra Prasad\n\n");
+ countq++;
+  if (toupper(getch())=='D')
+  {
+  printf("\n\nCorrect!!!");countr++; break;}
+  else
+  {
+  printf("\n\nWrong!!! The correct answer is Rajendra Prasad");break;}
+  case 4:
+  printf("\n\n\nWho is the MISSLE MAN of India?");
+  printf("\n\nA.A.P.J.Abdul Kalam\tB.Mahela Jawardan\n\nC.K.R.Narayanan\tD.Shankar Dhayal Sharma\n\n");
+  countq++;
+  if(toupper(getch())=='A')
+  {printf("\n\nCorrect!!!");countr++; break;}
+  else
+  {printf("\n\nWrong!!! The correct answer is A.P.J.Abdul Kalam");break;}
+  case 5:
+  printf("\n\n\nIn which year demonotization happened in India?");
+  printf("\n\nA.8 Nov 2016\tB.6 Nov 2016\n\nC.18 Nov 2016\tD.7 Nov 2016\n\n");
+  countq++;
+  if (toupper(getch())=='A')
+  {printf("\n\nCorrect!!!");countr++; break;}
+  else
+  {printf("\n\nWrong!!! The correct answer is A.8 Nov 2016");break;}
+  case 6:
+  printf("\n\n\nWho is the first Governor of India?");
+  printf("\n\nA.Lord William Bentinck\tB.Lord Amherst\n\nC.Sir.Charles Metcalfe\tD.Robert Clive\n\n");
+  countq++;
+  if(toupper(getch())=='B')
+  {printf("\n\nCorrect!!!");countr++; break;}
+  else
+  {printf("\n\nWrong!!! The correct answer is B.Lord Amherst");break;}
+  case 7:
+  printf("\n\n\nDasht-e Margo, also known as Desert of Death is located in which country?");
+  printf("\n\nA.Kazakhstan\tB.Saudi Arabia \n\nC.Afghanistan \tD.China\n\n");
+  countq++;
+  if(toupper(getch())=='C')
+  {printf("\n\nCorrect!!!");countr++; break;}
+  else
+  {printf("\n\nWrong!!! The correct answer is C.Afghanistan");break;}
+  case 8:
+  printf("\n\n\nThe northernmost point of India is known as?");
+  printf("\n\nA.Indira Heights \tB.Indira Col\n\nC.Indira Point\tD.None of the above\n\n");
+  countq++;
+  if(toupper(getch())=='B')
+  {printf("\n\nCorrect!!!");countr++; break;}
+  else
+  {printf("\n\nWrong!!! The correct answer is B.Indira Col");break;}
+  case 9:
+  printf("\n\n\nWho is the first non-Indian to receive the Bharat Ratna?");
+  printf("\n\nA.Khan Abdul Ghaffar Khan\tB.Mother Terasa \n\nC. Martin Luther King \t\tD.Aubin Mehta\n\n");
+  countq++;
+  if(toupper(getch())=='A')
+  {printf("\n\nCorrect!!!");countr++; break;}
+  else
+  {printf("\n\nWrong!!! The correct answer is A.Khan Abdul Ghaffar Khan");break;}
+  case 10:
+  printf("\n\n\nWhich is the highest peak in South India is?");
+  printf("\n\nA.Dhottabetta\tB.Nandadevi\n\nC.Anaimudi\tD.Mt.Abu\n\n");
+  countq++;
+  if(toupper(getch())=='C')
+  {printf("\n\nCorrect!!!");countr++; break;}
+  else
+  {printf("\n\nWrong!!! The correct answer is C.Anaimudi");break;}
+  case 11:
+  printf("\n\n\nWhich country has no income tax?");
+  printf("\n\nA.Nepal\tB.Singapore\n\nC.Kuwait\tD.Burma\n\n");
+  countq++;
+  if(toupper(getch())=='C')
+  {printf("\n\nCorrect!!!");countr++; break;}
+  else
+  {printf("\n\nWrong!!! The correct answer is C.Kuwait");break;}
+  case 12:
+  printf("\n\n\nSea route to India was discovered by?");
+  printf("\n\nA.Columbus\tB.Vasco-da-Gama\n\nC.Amundsen\tD.Willian Bentinck\n\n");
+  countq++;
+  if(toupper(getch())=='B')
+  {printf("\n\nCorrect!!!");countr++; break;}
+  else
+  {printf("\n\nWrong!!! The correct answer is B.Vasco-da-Gama");break;}
+  case 13:
+  printf("\n\n\nThe first English Newspaper in India was started by ?");
+  printf("\n\nA.JA Hickey\tB.Dadabhai Noroji\n\nC.Lord William Bentinck\tD.Rabindranath Tagore\n\n");
+  countq++;
+  if(toupper(getch())=='A')
+  {printf("\n\nCorrect!!!");countr++; break;}
+  else
+  {printf("\n\nWrong!!! The correct answer is A.JA Hickey");break;}
+  case 14:
+  printf("\n\n\nBarack Obama, the President of America comes from which of the following Americian States? ");
+  printf("\n\nA.Illinois\tB.California\n\nC.Virginia\tD.Indiana\n\n");
+  countq++;
+  if(toupper(getch())=='A')
+  {printf("\n\nCorrect!!!");countr++; break;}
+  else
+  {printf("\n\nWrong!!! The correct answer is A.Illinois");break;}
+  case 15:
+  printf("\n\n\nWhich country is Maria Sarapova from?");
+  printf("\n\nA.Russia\tB.Switzerland\n\nC.Argentina\tD.Spain\n\n");
+  countq++;
+  if(toupper(getch())=='A')
+  {printf("\n\nCorrect!!!");countr++; break;}
+  else
+  {printf("\n\nWrong!!! The correct answer is A.Russia");break;}
+  case 16:
+  printf("\n\n\nPink city in India is?");
+  printf("\n\nA.Mysore\tB.Jaipur\n\nC.Karanataka\tD.Hyderabad\n\n");
+  countq++;
+  if(toupper(getch())=='B')
+  {printf("\n\nCorrect!!!");countr++; break;}
+  else
+  {printf("\n\nWrong!!! The correct answer is B.Hyderabad");break;}
+  case 17:
+  printf("\n\n\nThe largest fresh water lake in India is ?");
+  printf("\n\nA.Pulicat Lake\tB.Chilka Lake\n\nC.Kolleru Lake\tD.Veeranam Lake\n\n");
+  countq++;
+  if(toupper(getch())=='C')
+  {printf("\n\nCorrect!!!");countr++; break;}
+  else
+  {printf("\n\nWrong!!! The correct answer is C.Kolleru Lake");break;}
+  case 18:
+  printf("\n\n\nLargest river in India?");
+  printf("\n\nA.Yamuna\tB.Kaveri\n\nC.Bramaputra\tD.Ganga\n\n");
+  countq++;
+  if(toupper(getch())=='D')
+  {printf("\n\nCorrect!!!");countr++; break;}
+  else
+  {printf("\n\nWrong!!! The correct answer is D.Pokhara");break;}
+  case 19:
+  printf("\n\n\nWhich place is called 'The Cherrapunji of Nepal'?");
+  printf("\n\nA.Dharan\tB.Kathmandu\n\nC.Pokhara\tD.Butwal\n\n");
+  countq++;
+  if(toupper(getch())=='C')
+ {printf("\n\nCorrect!!!");countr++; break;}
+  else
+  {printf("\n\nWrong!!! The correct answer is C.Pokhara");break;}
+  case 20:
+  printf("\n\n\nWhich city is known at 'The City of Seven Hills'?");
+  printf("\n\nA.Rome\tB.Vactican City\n\nC.Madrid\tD.Berlin\n\n");
+  countq++;
+  if(toupper(getch())=='A')
+  {printf("\n\nCorrect!!!");countr++; break;}
+  else
+  {printf("\n\nWrong!!! The correct answer is A.Rome");break;}
+  case 21:
+  printf("\n\n\nFirst university of India was founded in?");
+  printf("\n\nA.Bombay\tB.Chennai\n\nC.Calcutta\tD.Delhi\n\n");
+  countq++;
+  if(toupper(getch())=='C')
+  {printf("\n\nCorrect!!!");countr++; break;}
+  else
+  {printf("\n\nWrong!!! The correct answer is C.Calcutta");break;}
+  case 22:
+  printf("\n\n\nHottest planet in the solar system?");
+  printf("\n\nA.Earth\tB.Jupiter\n\nC.Mars\tD.Venus\n\n");
+  countq++;
+  if(toupper(getch())=='D')
+  {printf("\n\nCorrect!!!");countr++; break;}
+  else
+  {printf("\n\nWrong!!! The correct answer is D.Venus");break;}
+  case 23:
+  printf("\n\n\nName the country where there no mosquito is found?");
+  printf("\n\nA.Germany\tB.Spain\n\nC.Japan\tD.France\n\n");
+  countq++;
+  if(toupper(getch())=='D')
+  {printf("\n\nCorrect!!!");countr++; break;}
+  else
+  {printf("\n\nWrong!!! The correct answer is D.France");break;}
+  }
+  i++;
+  if(i<=5) goto start;
+  finaltime=time(NULL);
+  score=(float)countr/countq*100-difftime(finaltime,initialtime)/3;
+  if(score<0) score=0;
+  printf("\n\n\nYour Score: %.2f",score);
+  if(score==100) printf("\n\nEXCELLENT!!! KEEP IT UP");
+  else if (score>=80 && score<100) printf("\n\nVERY GOOD!!");
+  else if (score>=60 &&score<80) printf("\n\nGOOD! BUT YOU NEED TO KNOW MORE.");
+  else if (score>=40 && score<60) printf("\n\nSATISFACTORY RESULT, BUT THIS MUCH IS MUCH SUFFICIENT.");
+  else printf("\n\nYOU ARE VERY POOR IN G.K.,WORK HARD");
+  puts("\n\nNEXT PLAY?(Y/N)");
+  if(toupper(getch())=='Y')
+  goto home;
+  else
+  {
+  writescore(score,playername);
+  goto mainhome;
+  }
+  }
+  else
+  {
+  printf("\n\n\t\t  Enter the right key(S,V,H,Q)\n\n\t\t  ");
+  sleep(2);
+  goto mainhome;
+  }
+  return 0;
+  }
